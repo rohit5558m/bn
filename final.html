@@ -216,6 +216,59 @@
         height: 180px;
       }
     }
+
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  .scroll-down-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  animation: bounce 2s infinite;
+}
+
+.scroll-down-btn {
+  background-color: #1c1c1c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.scroll-down-btn:hover {
+  transform: scale(1.1);
+  background-color: #333;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+
+
   </style>
 </head>
 <body>
@@ -281,6 +334,23 @@
       const colors = ['#ff4d6d', '#ff6b81', '#e94f72', '#f95f62'];
       return colors[Math.floor(Math.random() * colors.length)];
     }
+
+      function scrollDown() {
+    window.scrollBy({
+      top: window.innerHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+  
   </script>
+
+  <div class="scroll-down-container">
+  <button class="scroll-down-btn" onclick="scrollDown()">
+    ↓
+  </button>
+</div>
+
+
 </body>
 </html>
