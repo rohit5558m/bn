@@ -12,13 +12,13 @@
       margin: 0;
       padding: 0;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     h1 {
       color: #ca82ad;
       margin-top: 40px;
-      font-size: 2.8rem;
+      font-size: 2.5rem;
     }
 
     #popup {
@@ -32,7 +32,7 @@
       padding: 30px 40px;
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(202, 130, 173, 0.5);
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
       z-index: 9999;
       animation: popupShow 0.5s ease forwards;
@@ -69,7 +69,7 @@
 
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 15px;
       padding: 20px;
       max-width: 1000px;
@@ -81,7 +81,7 @@
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease;
-      height: 260px;
+      height: 220px;
       object-fit: cover;
       opacity: 0;
     }
@@ -91,7 +91,7 @@
     }
 
     .final-message {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #ff2903;
       margin: 30px 20px;
       font-weight: bold;
@@ -189,6 +189,33 @@
         opacity: 0;
       }
     }
+
+    /* 💡 Mobile styles */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+        margin-top: 30px;
+      }
+
+      .final-message {
+        font-size: 1.2rem;
+        margin: 20px 15px;
+      }
+
+      #popup {
+        padding: 20px 25px;
+        font-size: 18px;
+      }
+
+      #popup button {
+        font-size: 16px;
+        padding: 10px 18px;
+      }
+
+      .photo-grid img {
+        height: 180px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -209,7 +236,7 @@
     <h1>Our Best Moments 💖</h1>
 
     <!-- Top 3 images -->
-     <div class="photo-grid top-row">
+    <div class="photo-grid top-row">
       <img src="images/i1.jpg" alt="Memory 1" />
       <img src="images/i1.jpg" alt="Memory 2" />
       <img src="images/i1.jpg" alt="Memory 3" />
