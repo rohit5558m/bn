@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clue 2: The Overthinker</title>
+  <style>
+    body {
+      background: #fefae0;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      grid-gap: 15px;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .box {
+      width: 80px;
+      height: 80px;
+      background-color: #d4a373;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .box:hover {
+      transform: scale(1.1);
+    }
+
+    #hiddenBtn, #message, #nextBtn {
+      display: none;
+      margin-top: 25px;
+    }
+
+    #hiddenBtn {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #606c38;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #message {
+      font-size: 1.3rem;
+      margin-top: 20px;
+      color: #6d6875;
+    }
+
+    #nextBtn {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 1rem;
+      background: #457b9d;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧠 Clue 2: The Overthinker</h1>
+  <p>Click the boxes to find the hidden button!</p>
+
+  <div class="grid">
+    <!-- Generate 16 boxes, one of which reveals the hidden button -->
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="rightClick(this)"></div> <!-- correct box -->
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+    <div class="box" onclick="wrongClick(this)"></div>
+  </div>
+
+  <button id="hiddenBtn" onclick="showMessage()">Reveal Message 💌</button>
+
+  <div id="message">“No matter how far we are, you're always on my heart — love you Bedhanaina!”</div>
+
+  <a href="clue3.html" id="nextBtn">➡️ Go to Clue 3</a>
+
+  <script>
+    function wrongClick(box) {
+      box.style.backgroundColor = '#b5838d';
+      box.style.pointerEvents = 'none';
+    }
+
+    function rightClick(box) {
+      box.style.backgroundColor = '#2a9d8f';
+      box.style.pointerEvents = 'none';
+      document.getElementById('hiddenBtn').style.display = 'inline-block';
+    }
+
+    function showMessage() {
+      document.getElementById('message').style.display = 'block';
+      document.getElementById('nextBtn').style.display = 'inline-block';
+    }
+  </script>
+
+</body>
+</html>

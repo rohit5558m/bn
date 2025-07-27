@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Call Your Pillars of Love</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffe9b3, #f4b630);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+    }
+
+    h2 {
+      color: #c65f00;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #444;
+      margin: 5px 0;
+    }
+
+    .bold-text {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .inputs {
+      margin: 25px 0;
+    }
+
+    .inputs input {
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      text-align: center;
+      margin: 0 8px;
+      border: 2px solid #e48a00;
+      border-radius: 12px;
+    }
+
+    .hint {
+      font-style: italic;
+      color: #666;
+      font-size: 0.95em;
+    }
+
+#popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background-color: #ca82ad; /* soft pink background */
+  color: #fff5f2; /* soft white-pink text for contrast */
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(202, 130, 173, 0.5); /* pink shadow */
+  font-size: 22px;
+  font-weight: bold;
+  z-index: 9999;
+  animation: popupShow 0.5s ease forwards;
+  text-align: center;
+  border: 2px solid #ff2903; /* match border with your theme red */
+}
+
+@keyframes popupShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Call Your Pillars of Love 💖</h2>
+    <p>Your final surprise is protected by 4 people who love you most:</p>
+    <p class="bold-text">Two sons 👦👦<br>One daughter 👧<br>And your wonderful wife 💐</p>
+    <p>Each one holds a number just for you. Reach out to them!</p>
+
+    <div class="inputs">
+      <input type="text" id="digit1" maxlength="1" oninput="moveToNext(this, 'digit2')">
+      <input type="text" id="digit2" maxlength="1" oninput="moveToNext(this, 'digit3')">
+      <input type="text" id="digit3" maxlength="1" oninput="moveToNext(this, 'digit4')">
+      <input type="text" id="digit4" maxlength="1" oninput="checkOTP()">
+    </div>
+
+    <p class="hint">(Your family is holding the secret code. A quick call or message to each will reveal it! ☎️)</p>
+  </div>
+
+  <div id="popup">You’ve gathered all the love 💛<br>Hang tight, Loading....</div>
+
+  <script>
+    const correctOTP = "2745"; // Change to your real code 5moni, 7rohit, 4pa, 2abi
+
+    function moveToNext(current, nextId) {
+      if (current.value.length === 1) {
+        document.getElementById(nextId).focus();
+      }
+    }
+
+    function checkOTP() {
+      const d1 = document.getElementById("digit1").value;
+      const d2 = document.getElementById("digit2").value;
+      const d3 = document.getElementById("digit3").value;
+      const d4 = document.getElementById("digit4").value;
+
+      const entered = d1 + d2 + d3 + d4;
+
+      if (entered === correctOTP) {
+        document.getElementById("popup").style.display = "block";
+        setTimeout(() => {
+          window.location.href = "final.html";
+        }, 5000);
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Surprise</title>
+  <style>
+    body {
+      background-color: #fff7f9;
+      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h1 {
+      color: #ca82ad;
+      margin-top: 40px;
+      font-size: 2.8rem;
+    }
+
+    #popup {
+      display: block;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background-color: #ca82ad;
+      color: #fff5f2;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(202, 130, 173, 0.5);
+      font-size: 22px;
+      font-weight: bold;
+      z-index: 9999;
+      animation: popupShow 0.5s ease forwards;
+      text-align: center;
+      border: 2px solid #ff2903;
+    }
+
+    @keyframes popupShow {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .photo-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    .final-message {
+      font-size: 2rem;
+      color: #ff2903;
+      margin: 60px 20px;
+      font-weight: bold;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="popup">You made it! Here's a surprise for you 🎁</div>
+
+  <h1>Moments with You 💖</h1>
+
+  <div class="photo-grid">
+    <img src="img1.jpg" alt="Memory 1" />
+    <img src="img2.jpg" alt="Memory 2" />
+    <img src="img3.jpg" alt="Memory 3" />
+    <img src="img4.jpg" alt="Memory 4" />
+    <!-- Add more <img> tags as needed -->
+  </div>
+
+  <div class="final-message">
+    🎂 Happy Birthday! You are so special to me 💫<br>
+    I hope this little surprise made you smile 😊
+  </div>
+
+  <!-- Background Music -->
+<audio id="bg-music" autoplay loop playsinline>
+  <source src="audio/mpeg/music.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  window.addEventListener('click', function () {
+    const audio = document.getElementById("bg-music");
+    audio.play().catch((e) => {
+      console.log("Autoplay blocked, will play on user interaction.");
+    });
+  }, { once: true });
+</script>
+
+
+</body>
+</html>

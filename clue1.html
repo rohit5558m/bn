@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clue 1 - Funny Lock</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .lock-box {
+      background: #fff0f5;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1.2rem;
+      width: 100%;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔒 Lock 🔒</h1>
+  <div class="lock-box">
+    <p>Guess the special date that Bedhanaina never forgets 😉</p>
+    <p>You locked yourself into this date forever..🥴<br>
+    Let's see if you still remember that sweet trap—I mean, special day! 😜<br>(DDMMYYYY):</p>
+    <input type="text" id="codeInput" placeholder="Enter date" maxlength="8" />
+    <button onclick="checkCode()">Unlock</button>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    const correctCode = "20051999"; // Example: Anniversary Date
+
+    function checkCode() {
+      const input = document.getElementById("codeInput").value;
+      const message = document.getElementById("message");
+
+      if (input === correctCode) {
+        message.style.color = "green";
+        message.innerText = "Correct! Unlocking next clue...";
+        setTimeout(() => {
+          window.location.href = "clue2.html";
+        }, 2000);
+      } else {
+        message.style.color = "red";
+        message.innerText = "Oops! That’s not the right date. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
