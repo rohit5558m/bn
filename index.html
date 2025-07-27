@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Special Surprise!</title>
   <style>
     body {
@@ -37,50 +37,15 @@
       color: white;
       border-radius: 10px;
       cursor: pointer;
-      display: none;
     }
   </style>
 </head>
 <body>
   <h1>⏳ The countdown has begun... </h1>
-   <h2>🎁 Kindly Get ready to open this when the timer hits zero! 🎉</h2>
-  <div id="countdown">Loading...</div>
+  <h2>🎁 Kindly Get ready to open this when the timer hits zero! 🎉</h2>
+  
+  <div id="countdown">🎉 It's Time! 🎉</div>
+
   <button id="openBtn" onclick="location.href='clue1.html'">Open Surprise</button>
-
-  <script>
-    const countdown = document.getElementById("countdown");
-    const openBtn = document.getElementById("openBtn");
-
-    const targetTime = new Date();
-    targetTime.setHours(22); // 10 PM
-    targetTime.setMinutes(42);
-    targetTime.setSeconds(0);
-    targetTime.setMilliseconds(0);
-
-    const now = new Date();
-    if (now > targetTime) {
-      targetTime.setDate(targetTime.getDate() + 1);
-    }
-
-    function updateTimer() {
-      const now = new Date().getTime();
-      const distance = targetTime - now;
-
-      if (distance <= 0) {
-        countdown.innerHTML = "🎉 It's Time! 🎉";
-        openBtn.style.display = "inline-block";
-        return;
-      }
-
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdown.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    setInterval(updateTimer, 1000);
-    updateTimer();
-  </script>
 </body>
 </html>
