@@ -1,123 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Clue 2: The Overthinker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Family Word Puzzle</title>
   <style>
     body {
-      background: #fefae0;
       font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 40px;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 80px);
-      grid-gap: 15px;
+      margin: 0;
+      padding: 0;
+      background: #f9f5ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      margin: 30px 0;
+      min-height: 100vh;
+    }
+
+    .set {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .visible {
+      display: flex;
+    }
+
+    .boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
 
     .box {
-      width: 80px;
-      height: 80px;
-      background-color: #d4a373;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.2s;
+      width: 50px;
+      height: 50px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      animation: bounceIn 0.4s ease;
     }
 
-    .box:hover {
-      transform: scale(1.1);
+    input {
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      width: 80%;
+      max-width: 300px;
+      text-align: center;
     }
 
-    #hiddenBtn, #message, #nextBtn {
-      display: none;
-      margin-top: 25px;
-    }
-
-    #hiddenBtn {
+    button {
       padding: 10px 20px;
-      font-size: 1rem;
-      background-color: #606c38;
-      color: white;
+      background-color: #5d5fef;
+      color: #fff;
       border: none;
-      border-radius: 10px;
+      border-radius: 5px;
+      font-size: 16px;
       cursor: pointer;
     }
 
-    #message {
-      font-size: 1.3rem;
-      margin-top: 20px;
-      color: #6d6875;
+    @keyframes bounceIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
-    #nextBtn {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 1rem;
-      background: #457b9d;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 10px;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>🧠 Clue 2: The Overthinker</h1>
-  <p>Click the boxes to find the hidden button!</p>
+  <h2>🧩 Solve the Puzzle! (2 words are present)</h2>
+  <p>Give space <br></p>
 
-  <div class="grid">
-    <!-- Generate 16 boxes, one of which reveals the hidden button -->
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="rightClick(this)"></div> <!-- correct box -->
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
-    <div class="box" onclick="wrongClick(this)"></div>
+  <div id="set1" class="set visible">
+    <div class="boxes" id="box1"></div>
+    <input type="text" id="input1" placeholder="Type the correct phrase" />
+    <button onclick="checkAnswer(1, 'happy home')">Submit</button>
   </div>
 
-  <button id="hiddenBtn" onclick="showMessage()">Reveal Message 💌</button>
+  <div id="set2" class="set">
+    <div class="boxes" id="box2"></div>
+    <input type="text" id="input2" placeholder="Type the correct phrase" />
+    <button onclick="checkAnswer(2, 'pure heart')">Submit</button>
+  </div>
 
-  <div id="message">“No matter how far we are, you're always on my heart — love you Bedhanaina!”</div>
-
-  <a href="clue3.html" id="nextBtn">➡️ Go to Clue 3</a>
+  <div id="set3" class="set">
+    <div class="boxes" id="box3"></div>
+    <input type="text" id="input3" placeholder="Type the correct name" />
+    <button onclick="checkAnswer(3, 'vijay kumar')">Finish</button>
+  </div>
 
   <script>
-    function wrongClick(box) {
-      box.style.backgroundColor = '#b5838d';
-      box.style.pointerEvents = 'none';
-    }
+    const sets = [
+      { id: 1, answer: "happy home" },
+      { id: 2, answer: "pure heart" },
+      { id: 3, answer: "vijay kumar" }
+    ];
 
-    function rightClick(box) {
-      box.style.backgroundColor = '#2a9d8f';
-      box.style.pointerEvents = 'none';
-      document.getElementById('hiddenBtn').style.display = 'inline-block';
-    }
+    sets.forEach(set => {
+      const chars = set.answer.toUpperCase().split("").filter(c => c !== " ");
+      const shuffled = chars.sort(() => Math.random() - 0.5);
+      const container = document.getElementById("box" + set.id);
 
-    function showMessage() {
-      document.getElementById('message').style.display = 'block';
-      document.getElementById('nextBtn').style.display = 'inline-block';
+      shuffled.forEach(char => {
+        const div = document.createElement("div");
+        div.className = "box";
+        div.textContent = char;
+        container.appendChild(div);
+      });
+    });
+
+    function checkAnswer(setNum, expected) {
+      const input = document.getElementById("input" + setNum).value.trim().toLowerCase();
+      if (input === expected) {
+        document.getElementById("set" + setNum).classList.remove("visible");
+        if (setNum < 3) {
+          document.getElementById("set" + (setNum + 1)).classList.add("visible");
+        } else {
+          alert("🎉 You unlocked the message! 🎉");
+          window.location.href = "clue3.html"; // change this to your final page
+        }
+      } else {
+        alert("Oops! Try again.");
+      }
     }
   </script>
-
 </body>
 </html>
